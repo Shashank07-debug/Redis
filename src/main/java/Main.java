@@ -10,7 +10,7 @@ public class Main {
     //  Uncomment the code below to pass the first stage
        ServerSocket serverSocket = null;
        Socket clientSocket = null;
-       int port = 6379;
+       int port = 6380;
        try {
          serverSocket = new ServerSocket(port);
          // Since the tester restarts your program quite often, setting SO_REUSEADDR
@@ -18,6 +18,7 @@ public class Main {
          serverSocket.setReuseAddress(true);
          // Wait for connection from client.
          clientSocket = serverSocket.accept();
+         clientSocket.getOutputStream().write("+PONG\r\n".getBytes());
        } catch (IOException e) {
          System.out.println("IOException: " + e.getMessage());
        } finally {
